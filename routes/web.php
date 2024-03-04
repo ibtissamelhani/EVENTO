@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,7 @@ Route::get('/dashboard', function () {
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('/category', CategoryController::class);
     Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
+    Route::resource('/type', TypeController::class);
 });
 
 Route::middleware('auth')->group(function () {
