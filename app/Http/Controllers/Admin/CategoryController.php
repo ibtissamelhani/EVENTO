@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -31,7 +32,10 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $category = Category::create($request->all());
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255', Rule::unique('categories')],
+        ]);
+        $category = Category::create($validatedData);
         return redirect()->route('admin.category.index')->with('success','Category created successfully.');
     }
 
@@ -46,24 +50,37 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        $countCat = Category::count();
+        return view('admin.categories.edit', compact('category','countCat'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255', Rule::unique('categories')],
+        ]);
+        $category->update($validatedData);
+        return redirect()->route('admin.category.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('admin.category.index');
+    }
+
+    public function search(Request $request){
+        $countCat = Category::count();
+        $keyword = $request->keyword;
+        $categories = Category::where('name', 'like', '%' . $keyword . '%')->get();
+        return view ('admin.categories.index', compact('categories','countCat'));
     }
 }

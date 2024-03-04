@@ -6,12 +6,14 @@
                     <span class="material-symbols-outlined text-2xl text-blue-800 font-bold ">
                         category
                     </span>
-                    <span class="flex-1 ms-3 whitespace-nowrap"><span class="mr-4">{{ $countCat }}</span>Event Categories</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap"><span class="mr-4">{{ $countCat }}</span>Event
+                        Categories</span>
                 </p>
             </div>
             <div class="flex items-center justify-around h-20 rounded bg-gray-50 dark:bg-gray-800 col-span-2">
 
-                <form class="flex items-center max-w-sm">
+                <form class="flex items-center max-w-sm" method="GET" action="{{ route('admin.category.search') }}">
+                    @csrf
                     <label for="simple-search" class="sr-only">Search</label>
                     <div class="relative w-full">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -22,9 +24,9 @@
                                     d="M3 5v10M3 5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm0 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm12 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0V6a3 3 0 0 0-3-3H9m1.5-2-2 2 2 2" />
                             </svg>
                         </div>
-                        <input type="text" id="simple-search"
+                        <input type="text" id="simple-search" name="keyword"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Search branch name..." required />
+                            placeholder="Search category name..." required />
                     </div>
                     <button type="submit"
                         class="p-2.5 ms-2 text-sm font-medium text-white bg-blue-800 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
@@ -69,7 +71,7 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <form class="p-4 md:p-5"  method="POST" action="{{route('admin.category.store')}}">
+                            <form class="p-4 md:p-5" method="POST" action="{{ route('admin.category.store') }}">
                                 @csrf
                                 <div class="grid gap-4 mb-4 grid-cols-2">
                                     <div class="col-span-2">
@@ -115,36 +117,44 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($categories as $category)
-                            <tr
-                                class="odd:bg-gray-100 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $category->id }}
-                                </th>
-                                <td class="px-6 py-4">
-                                    {{ $category->name }}
-                                </td>
-                                <td class="flex gap-4  px-6 py-4">
-                                    <a href="" class="hover:text-yellow-500">
-                                        <span class="material-symbols-outlined hover:text-yellow-500 text-2xl">
-                                            edit
-                                        </span>
-                                    </a>
-
-                                    <form action="" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button>
-                                            <span
-                                                class="material-symbols-outlined dark:hover:text-red-500  hover:text-red-500 text-2xl">
-                                                delete
+                        @if (count($categories) > 0)
+                            @foreach ($categories as $category)
+                                <tr
+                                    class="odd:bg-gray-100 odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                                    <th scope="row"
+                                        class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        {{ $category->id }}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {{ $category->name }}
+                                    </td>
+                                    <td class="flex gap-4  px-6 py-4">
+                                        <a href="{{ route('admin.category.edit', $category->id) }}"
+                                            class="hover:text-yellow-500">
+                                            <span class="material-symbols-outlined hover:text-yellow-500 text-2xl">
+                                                edit
                                             </span>
-                                        </button>
-                                    </form>
-                                </td>
+                                        </a>
+
+                                        <form action="{{ route('admin.category.destroy', $category->id) }}"
+                                            method="post">
+                                            @method('delete')
+                                            @csrf
+                                            <button>
+                                                <span
+                                                    class="material-symbols-outlined dark:hover:text-red-500  hover:text-red-500 text-2xl">
+                                                    delete
+                                                </span>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                no data found
                             </tr>
-                        @endforeach
+                        @endif
                     </tbody>
                 </table>
                 <div class="px-8 flex py-2">

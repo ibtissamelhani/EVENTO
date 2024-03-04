@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
 
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('/category', CategoryController::class);
+    Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
 });
 
 Route::middleware('auth')->group(function () {
