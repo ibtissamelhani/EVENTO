@@ -4,9 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Model
+class User extends Authenticatable
 {
     use HasFactory, SoftDeletes;
 
@@ -15,7 +16,7 @@ class User extends Model
         'email',
         'password',
         'gender',
-        'birth_date',
+        'age',
         'institution_id'
     ];
 
