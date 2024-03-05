@@ -108,7 +108,7 @@
                     <div>
                         <label for="first_name"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                        <select class="js-example-basic-multiple" name="roles[]" multiple="multiple">
+                        <select class="js-example-basic-multiple select2 " size="1" name="roles[]" multiple="multiple">
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}" @if($user->roles->contains('id', $role->id)) selected @endif>{{ $role->name }}</option>
                             @endforeach
@@ -124,9 +124,5 @@
 
 
     </x-sidebar-admin>
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2();
-        });
-    </script>
+    
 </x-app-layout>

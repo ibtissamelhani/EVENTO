@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
@@ -32,7 +33,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('/category', CategoryController::class);
     Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
 
-    
+    Route::resource('/event', EventController::class);
+
     Route::resource('/type', TypeController::class);
     Route::get('/types/search', [TypeController::class, 'search'])->name('types.search');
 
