@@ -17,8 +17,20 @@ class User extends Authenticatable
         'password',
         'gender',
         'age',
+        'status',
         'institution_id'
     ];
+
+    // status options
+    public const STATUS_RADIO = [
+        '1'=> 'Allowed',
+        '2'=> 'Banned',
+    ];
+
+    // get the user status 
+    public function getStatus(){
+        return self::STATUS_RADIO[$this->status];
+    }
 
     public function institution()
     {
