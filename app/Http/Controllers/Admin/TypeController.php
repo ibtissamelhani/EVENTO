@@ -80,7 +80,7 @@ class TypeController extends Controller
     public function search(Request $request){
         $countTypes = Type::count();
         $keyword = $request->keyword;
-        $types = Type::where('name', 'like', '%' . $keyword . '%')->get();
+        $types = Type::where('name', 'like', '%' . $keyword . '%')->paginate(5);
         return view ('admin.types.index', compact('types','countTypes'));
     }
 }

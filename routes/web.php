@@ -30,14 +30,17 @@ Route::get('/dashboard', function () {
 
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('/category', CategoryController::class);
-    Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
+    Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
+
     
     Route::resource('/type', TypeController::class);
-    Route::get('/type/search', [TypeController::class, 'search'])->name('type.search');
+    Route::get('/types/search', [TypeController::class, 'search'])->name('types.search');
 
     Route::resource('/user', UserController::class);
     Route::post('/user/banne/{user}', [UserController::class, 'blockUser'])->name('user.banne');
     Route::post('/user/unbanne/{user}', [UserController::class, 'unblock'])->name('user.unbanne');
+    Route::get('/search', [UserController::class, 'search'])->name('user.search');
+
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////

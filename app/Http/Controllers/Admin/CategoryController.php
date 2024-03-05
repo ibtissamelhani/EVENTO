@@ -80,7 +80,7 @@ class CategoryController extends Controller
     public function search(Request $request){
         $countCat = Category::count();
         $keyword = $request->keyword;
-        $categories = Category::where('name', 'like', '%' . $keyword . '%')->get();
+        $categories = Category::where('name', 'like', '%' . $keyword . '%')->paginate(5);
         return view ('admin.categories.index', compact('categories','countCat'));
     }
 }

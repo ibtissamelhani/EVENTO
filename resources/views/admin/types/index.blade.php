@@ -12,7 +12,7 @@
             </div>
             <div class="flex items-center justify-around h-20 rounded bg-gray-50 dark:bg-gray-800 col-span-2">
 
-                <form class="flex items-center max-w-sm" method="GET" action="">
+                <form class="flex items-center max-w-sm" method="GET" action="{{route('admin.types.search')}}">
                     @csrf
                     <label for="simple-search" class="sr-only">Search</label>
                     <div class="relative w-full">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,16 @@ class UserController extends Controller
         return redirect()->route('admin.user.index');
     }
 
+
+    public function search(Request $request){
+        $countUsers = User::count();
+        $keyword = $request->keyword;
+        $users = User::where('name', 'like', '%' . $keyword . '%')
+                        ->orwhere ('email', 'like', '%' . $keyword . '%')
+                        ->paginate(6);
+        return view ('admin.users.index', compact('users','countUsers'));
+    }
+
     // /**
     //  * Show the form for creating a new resource.
     //  */
@@ -54,17 +65,20 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
+    // public function show(User $user)
+    // {
+    //     // 
+    // }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
-        //
+        $countUsers = User::count();
+        $STATUS_RADIO = User::STATUS_RADIO;
+        $roles = Role::whereNotIn('name', ['Organizer'])->get();
+        return view('admin.users.edit', compact('user','countUsers','STATUS_RADIO','roles'));
     }
 
     /**
@@ -72,7 +86,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
     }
 
     /**
