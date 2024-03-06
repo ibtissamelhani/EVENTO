@@ -16,8 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('age')->nullable();
-            $table->string('gender')->nullable();
             $table->integer('status')->default(1);
             $table->foreignId('institution_id')
             ->nullable()

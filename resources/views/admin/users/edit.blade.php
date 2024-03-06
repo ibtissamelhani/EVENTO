@@ -69,20 +69,6 @@
                     </div>
                     <div>
                         <label for="first_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Age</label>
-                        <input type="text" id="first_name"
-                            class="bg-gray-50 border border-gray-300 cursor-not-allowed text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ $user->age }}" disabled readonly />
-                    </div>
-                    <div>
-                        <label for="first_name"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gender</label>
-                        <input type="text" id="first_name"
-                            class="bg-gray-50 border  border-gray-300 cursor-not-allowed text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            value="{{ $user->gender }}" disabled readonly />
-                    </div>
-                    <div>
-                        <label for="first_name"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                         <select id="countries"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -108,9 +94,11 @@
                     <div>
                         <label for="first_name"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Role</label>
-                        <select class="js-example-basic-multiple select2 " size="1" name="roles[]" multiple="multiple">
+                        <select class="js-example-basic-multiple select2 " size="1" name="roles[]"
+                            multiple="multiple">
                             @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" @if($user->roles->contains('id', $role->id)) selected @endif>{{ $role->name }}</option>
+                                <option value="{{ $role->id }}" @if ($user->roles->contains('id', $role->id)) selected @endif>
+                                    {{ $role->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -124,5 +112,5 @@
 
 
     </x-sidebar-admin>
-    
+
 </x-app-layout>
