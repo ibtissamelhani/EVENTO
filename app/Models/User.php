@@ -24,11 +24,19 @@ class User extends Authenticatable
     public const STATUS_RADIO = [
         '1'=> 'Allowed',
         '2'=> 'Banned',
+        '3'=> 'Pending',
     ];
 
     // get the user status 
     public function getStatus(){
         return self::STATUS_RADIO[$this->status];
+    }
+    // update institution_id
+
+    public static function updateInstitutId($id, $newInstitutId){
+        $user = User::findOrFail($id);
+        $user->institution_id = $newInstitutId;
+        $user->save();
     }
 
     public function institution()

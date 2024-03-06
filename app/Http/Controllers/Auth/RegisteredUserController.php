@@ -42,11 +42,19 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->roles()->attach(2);
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        return redirect()->route('/');
+        if ($request->role == 3)
+        {
+            $user->roles()->attach(2);
+            $user->update(['status'=> 3]);
+            event(new Registered($user));
+            Auth::login($user);
+            return redirect()->route('organizer.institution.create');
+        }else
+        {
+            $user->roles()->attach(2);
+            event(new Registered($user));
+            Auth::login($user);
+            return redirect()->route('/');
+        }
     }
 }

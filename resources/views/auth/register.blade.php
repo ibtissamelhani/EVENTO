@@ -139,9 +139,24 @@
                     </div>
                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                 </div>
-
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center mt-4 mb-4">
+                        <input id="default-radio-1" type="radio" value="3" name="role" required
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-1"
+                            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Organizer</label>
+                    </div>
+                    <div class="flex items-center">
+                        <input id="default-radio-2" type="radio" value="2" name="role" required
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                        <label for="default-radio-2"
+                            class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Attendee</label>
+                    </div>
+                    
+                </div>
                 <div class="flex items-center justify-between">
-                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
+                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                        href="{{ route('login') }}">
                         {{ __('Already registered?') }}
                     </a>
                     <button type="submit"

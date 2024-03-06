@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Organizer\InstitutionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +47,15 @@ Route::prefix('admin')->name('admin.')->group(function() {
 });
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////// organizer routes////////////////////////////////////////
+
+Route::prefix('organizer')->name('organizer.')->group(function(){
+    Route::resource('/institution', InstitutionController::class);
+});
+
+// //////////////////////////////////////////////////////////////////////////////////////////
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
