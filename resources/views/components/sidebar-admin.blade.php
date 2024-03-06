@@ -4,7 +4,7 @@
     <div class="flex flex-col  items-center gap-6 h-full px-3 py-10 overflow-y-auto bg-white dark:bg-gray-800">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="{{route('dashboard')}}"
+                <a href="{{ route('dashboard') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
@@ -17,58 +17,66 @@
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.event.index')}}"
+                <a href="{{ route('admin.event.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined  flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                    <span
+                        class="material-symbols-outlined  flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         today
-                        </span>
+                    </span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Events</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.user.index')}}"
+                <a href="{{ route('admin.user.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                    <span
+                        class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         group
-                        </span>
+                    </span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Users</span>
                 </a>
             </li>
             <li>
                 <a href="#"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                    <span
+                        class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         add_business
-                        </span>
+                    </span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Institutions</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.category.index')}}"
+                <a href="{{ route('admin.category.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                    <span
+                        class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         category
-                        </span>
+                    </span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Event Categories</span>
                 </a>
             </li>
             <li>
-                <a href="{{route('admin.type.index')}}"
+                <a href="{{ route('admin.type.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                    <span
+                        class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         format_list_bulleted
-                        </span>
+                    </span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Institution Types</span>
                 </a>
             </li>
             <li>
-                <a href="#"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                <form id="logoutForm" method="POST" action="{{ route('logout') }}"
+                    class="flex items-center "class="flex items-center p-2 px-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span
+                        class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         logout
-                        </span>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Sign Out</span>
-                </a>
+                    </span>
+                    <button type="submit" class="flex-1 whitespace-nowrap">
+                        Sign Out
+                    </button>
+                </form>
             </li>
         </ul>
     </div>
@@ -76,7 +84,6 @@
 
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-       {{ $slot}}
+        {{ $slot }}
     </div>
 </div>
-

@@ -51,36 +51,55 @@
                             dark:shadow-none dark:bg-gray-800 dark:border-gray-700 ">
 
                         <div class="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0 ">
-                            <ul
-                                class="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 ">
+                            <ul class="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 ">
+                                @auth
+                                    <li class="">
+                                        <a href="#"
+                                            class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
+                                            <span class="">Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#"
+                                            class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
+                                            <span class="">Profile</span>
+                                        </a>
+                                    </li>
+                                @else
                                 <li class="">
                                     <a href="#"
                                         class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
-                                        <span class="">Dashboard</span>
+                                        <span class="">Create Events</span>
                                     </a>
                                 </li>
-                                <li class="">
-                                    <a href="#"
-                                        class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
-                                        <span class="">Profile</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a href="{{route('login')}}"
-                                        class="block md:px-4 transition underline hover:text-indigo-500 hover:text-base ">
-                                        <span class="">login</span>
-                                    </a>
-                                </li>
-                            </ul>
+                                    <li class="">
+                                        <a href="{{ route('login') }}"
+                                            class="block md:px-4 transition underline hover:text-indigo-500 hover:text-base ">
+                                            <span class="">login</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            @endauth
                         </div>
-
-                        <div class="mt-12 lg:mt-0 ">
-                            <a href="{{route('register')}}"
-                                class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-blue-800 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max ">
-                                <span class="relative text-sm font-semibold text-white ">Get
-                                    Started</span>
-                            </a>
-                        </div>
+                        @auth
+                            <div class="mt-12 lg:mt-0 ">
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit"
+                                        class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-blue-800 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max ">
+                                        <span class="relative text-sm font-semibold text-white ">Logout
+                                        </span></button>
+                                </form>
+                            </div>
+                        @else
+                            <div class="mt-12 lg:mt-0 ">
+                                <a href="{{ route('register') }}"
+                                    class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-blue-800 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max ">
+                                    <span class="relative text-sm font-semibold text-white ">Get
+                                        Started</span>
+                                </a>
+                            </div>
+                        @endauth
                     </div>
                 </div>
             </div>
