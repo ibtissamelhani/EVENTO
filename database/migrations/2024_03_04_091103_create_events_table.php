@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->date('date');
             $table->string('location');
-            $table->integer('status');
+            $table->integer('status')->default(1);
             $table->integer('capacity');
             $table->decimal('price');
+            $table->text('description');
             $table->boolean('automatic_acceptence')->default(false);
             $table->boolean('publish_event')->default(false);
             $table->foreignId('user_id')

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Organizer;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreEventRequest;
+use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +16,7 @@ class EventController extends Controller
     public function index()
     {
         $orgEvents = Auth::user()->orgEvents;
-        return view('organizer.events.organizerEvents', compact('orgEvents'));
+        return view('organizer.events.index', compact('orgEvents'));
     }
 
     /**
@@ -22,15 +24,19 @@ class EventController extends Controller
      */
     public function create()
     {
-        //
+        return view('organizer.events.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreEventRequest $request)
     {
-        //
+        
+        $event = Event::create($request->all());
+
+        $event->addMediaFromRequest('image')->toMediaCollection('images');
+        return redirect()->route('organizer.MyEvents.index');
     }
 
     /**
