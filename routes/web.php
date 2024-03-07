@@ -54,10 +54,13 @@ Route::prefix('admin')->name('admin.')->group(function() {
 //////////////////////////////////// organizer routes////////////////////////////////////////
 
 Route::prefix('organizer')->name('organizer.')->group(function(){
+
     Route::resource('/institution', InstitutionController::class);
+
     Route::get('/dashboard', function () {
         return view('organizer.dashboard'); })->name('dashboard');
-    Route::resource('/MyEvents', OrganizerEventController::class);
+        
+    Route::resource('/event', OrganizerEventController::class);
 });
 
 // //////////////////////////////////////////////////////////////////////////////////////////

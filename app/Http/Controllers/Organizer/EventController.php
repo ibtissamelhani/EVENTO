@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Organizer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
+use App\Http\Requests\UpdateEventRequest;
 use App\Models\Category;
+use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +18,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $orgEvents = Auth::user()->orgEvents()->latest()->paginate(6);
+        $orgEvents = Auth::user()->organizerEvents()->get();
         return view('organizer.events.index', compact('orgEvents'));
     }
 
@@ -38,7 +40,7 @@ class EventController extends Controller
         $event = Event::create($request->all());
 
         $event->addMediaFromRequest('image')->toMediaCollection('images');
-        return redirect()->route('organizer.MyEvents.index');
+        return redirect()->route('organizer.event.index');
     }
 
     /**
@@ -52,24 +54,32 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Event $event)
     {
-        //
+        $categories = Category::all();
+        return view('organizer.events.edit', compact('event','categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+        $event->update($request->all());
+        if ($request->hasFile('image')) {
+            $event->clearMediaCollection('images');
+            $event->addMediaFromRequest('image')->toMediaCollection('images');
+        }
+        return redirect()->route('organizer.event.index')->with('success', 'Event udated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event)
     {
-        //
+        $event->delete();
+        return redirect()->route('organizer.event.index')
+            ->with('success', 'Event deleted successfully.');
     }
 }
