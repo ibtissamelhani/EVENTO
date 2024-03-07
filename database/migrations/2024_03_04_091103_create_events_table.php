@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->date('date');
             $table->string('location');
-            $table->integer('status')->default(1);
             $table->integer('capacity');
             $table->decimal('price');
             $table->text('description');

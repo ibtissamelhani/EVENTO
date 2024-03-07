@@ -16,7 +16,6 @@ class Event extends Model implements HasMedia
         'name',
         'date',
         'location',
-        'status',
         'capacity',
         'price',
         'automatic_acceptence',
@@ -26,11 +25,6 @@ class Event extends Model implements HasMedia
         'category_id',
     ];
 
-    public const STATUS_RADIO = [
-        '1'=> 'Confirmed',
-        '2'=> 'Cancelled',
-        '3'=> 'Postponed',
-    ];
 
     public function category()
     {
