@@ -20,92 +20,7 @@
 
 </head>
 
-<body class="bg-white dark:bg-gray-900 astro-FLTEP2YP">
-    <header class="astro-UY3JLCBK">
-        <nav class="z-10 w-full absolute astro-UY3JLCBK">
-            <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
-                <div
-                    class="flex flex-wrap items-center justify-between py-2 gap-6 md:py-4 md:gap-0 relative astro-UY3JLCBK">
-                    <input aria-hidden="true" type="checkbox" name="toggle_nav" id="toggle_nav"
-                        class="hidden peer astro-UY3JLCBK">
-                    <div class="relative z-20 w-full flex justify-between lg:w-max md:px-0 astro-UY3JLCBK">
-                        <div class="relative flex items-center lg:hidden max-h-10 astro-UY3JLCBK">
-                            <label role="button" for="toggle_nav" aria-label="humburger" id="hamburger"
-                                class="relative  p-6 -mr-6 astro-UY3JLCBK">
-                                <div aria-hidden="true" id="line"
-                                    class="m-auto h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300 transition duration-300 astro-UY3JLCBK">
-                                </div>
-                                <div aria-hidden="true" id="line2"
-                                    class="m-auto mt-2 h-0.5 w-5 rounded bg-sky-900 dark:bg-gray-300 transition duration-300 astro-UY3JLCBK">
-                                </div>
-                            </label>
-                        </div>
-                    </div>
-                    <div aria-hidden="true"
-                        class="fixed z-10 inset-0 h-screen w-screen bg-white/70 backdrop-blur-2xl origin-bottom scale-y-0 transition duration-500 peer-checked:origin-top peer-checked:scale-y-100 lg:hidden dark:bg-gray-900/70 astro-UY3JLCBK">
-                    </div>
-                    <div
-                        class="flex-col z-20 flex-wrap gap-6 p-8 rounded-3xl border border-gray-100 bg-white shadow-2xl shadow-gray-600/10 justify-end w-full invisible opacity-0 translate-y-1  absolute top-full left-0 transition-all duration-300 scale-95 origin-top 
-                            lg:relative lg:scale-100 lg:peer-checked:translate-y-0 lg:translate-y-0 lg:flex lg:flex-row lg:items-center lg:gap-0 lg:p-0 lg:bg-transparent lg:w-7/12 lg:visible lg:opacity-100 lg:border-none
-                            peer-checked:scale-100 peer-checked:opacity-100 peer-checked:visible lg:shadow-none 
-                            dark:shadow-none dark:bg-gray-800 dark:border-gray-700 ">
-
-                        <div class="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0 ">
-                            <ul class="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 ">
-                                @auth
-                                    <li class="">
-                                        <a href="{{ route('organizer.dashboard') }}"
-                                            class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
-                                            <span class="">Dashboard</span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="#"
-                                            class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
-                                            <span class="">Profile</span>
-                                        </a>
-                                    </li>
-                                @else
-                                    <li class="">
-                                        <a href="#"
-                                            class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
-                                            <span class="">Create Events</span>
-                                        </a>
-                                    </li>
-                                    <li class="">
-                                        <a href="{{ route('login') }}"
-                                            class="block md:px-4 transition underline hover:text-indigo-500 hover:text-base ">
-                                            <span class="">login</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            @endauth
-                        </div>
-                        @auth
-                            <div class="mt-12 lg:mt-0 ">
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit"
-                                        class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-blue-800 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max ">
-                                        <span class="relative text-sm font-semibold text-white ">Logout
-                                        </span></button>
-                                </form>
-                            </div>
-                        @else
-                            <div class="mt-12 lg:mt-0 ">
-                                <a href="{{ route('register') }}"
-                                    class="relative flex h-9 w-full items-center justify-center px-4 before:absolute before:inset-0 before:rounded-full before:bg-blue-800 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max ">
-                                    <span class="relative text-sm font-semibold text-white ">Get
-                                        Started</span>
-                                </a>
-                            </div>
-                        @endauth
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </header>
-
+<body class="bg-white dark:bg-gray-900">
     <aside id="logo-sidebar"
         class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
         aria-label="Sidebar">
@@ -151,13 +66,23 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#"
+                    <a href="{{route('organizer.institution.show', Auth::user()->institution_id)}}"
                         class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <span
                             class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                             add_business
                         </span>
                         <span class="flex-1 ms-3 whitespace-nowrap">My Institution</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{route('profile.edit')}}"
+                        class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <span
+                            class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                            account_circle
+                        </span>
+                        <span class="flex-1 ms-3 whitespace-nowrap">Profile</span>
                     </a>
                 </li>
             </ul>
@@ -174,7 +99,7 @@
     </aside>
 
     <div class="p-4 sm:ml-64">
-        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 ">
             {{ $slot }}
         </div>
     </div>

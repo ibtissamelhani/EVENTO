@@ -1,4 +1,11 @@
 <x-sidebar-org>
+    <a href="{{ route('organizer.event.index') }}">
+        <svg class="w-6 h-6 hover:text-red-400 text-gray-800 dark:text-white" aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13" />
+        </svg>
+    </a>
     <div class="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
         <dl class="-my-3 divide-y divide-gray-100 text-sm">
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
@@ -29,7 +36,8 @@
             </div>
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-900">Price of one ticket</dt>
-                <dd class="text-gray-700 sm:col-span-2">{{ $event->price }} <span class="text-black ml-2">  MAD</span></dd>
+                <dd class="text-gray-700 sm:col-span-2">{{ $event->price }} <span class="text-black ml-2"> MAD</span>
+                </dd>
             </div>
             <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                 <dt class="font-medium text-gray-900">Automatic acceptance!</dt>
