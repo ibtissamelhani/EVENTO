@@ -22,7 +22,8 @@ class Event extends Model implements HasMedia
         'automatic_acceptence',
         'publish_event',
         'description',
-        'user_id'
+        'user_id',
+        'category_id',
     ];
 
     public const STATUS_RADIO = [

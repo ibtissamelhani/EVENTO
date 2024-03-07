@@ -29,6 +29,7 @@ class StoreEventRequest extends FormRequest
             'price' => 'required|numeric',
             'capacity' => 'required|integer',
             'description' => 'required|string',
+            'category_id' => 'required',
         ];
     }
 }

@@ -11,13 +11,13 @@
             </a>
         </div>
     </div>
-    <div class="grid grid-cols-3 gap-4 mb-4">
+    <div class="grid grid-cols-3 gap-4 mb-4 p-4 bg-gray-50">
         @forelse($orgEvents as $orgEvent)
         <div class="max-w-sm mt-12 rounded-lg bg-white shadow-md dark:bg-gray-600">
             <img class="h-48 w-full rounded-t-lg object-cover object-center"
-                src="" alt="Photo">
+                src="{{$orgEvent->getFirstMediaUrl('images')}}" alt="Photo">
             <div class="p-5">
-                <h5 class="mb-2 text-xl font-medium text-gray-900 dark:text-white">dfcvgbh</h5>
+                <h5 class="mb-2 text-xl font-medium text-gray-900 dark:text-white">{{$orgEvent->name}}</h5>
                 {{-- <span
                     class="inline-flex items-center justify-center w-3 h-3 py-3 px-10 ms-3 text-sm font-medium 
                 @if ($project->status == 1) text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300
@@ -58,5 +58,8 @@
         @empty
         <li>No Event found.</li>
     @endforelse
+    </div>
+    <div class="px-8 flex py-2">
+        {{ $orgEvents->links() }}
     </div>
 </x-sidebar-org>

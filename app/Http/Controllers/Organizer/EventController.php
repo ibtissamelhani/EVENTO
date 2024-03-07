@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Organizer;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreEventRequest;
+use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $orgEvents = Auth::user()->orgEvents;
+        $orgEvents = Auth::user()->orgEvents()->latest()->paginate(6);
         return view('organizer.events.index', compact('orgEvents'));
     }
 
@@ -24,7 +25,8 @@ class EventController extends Controller
      */
     public function create()
     {
-        return view('organizer.events.create');
+        $categories = Category::all();
+        return view('organizer.events.create', compact('categories'));
     }
 
     /**
