@@ -21,6 +21,7 @@ class Event extends Model implements HasMedia
         'price',
         'automatic_acceptence',
         'publish_event',
+        'user_id'
     ];
 
     public function category()

@@ -18,20 +18,20 @@
                         <div>
                             <label class="sr-only" for="name">Name</label>
                             <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Institution Name"
-                                type="text" id="name" />
+                                type="text" name="name" id="name" />
                         </div>
 
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
                             <div>
                                 <label class="sr-only" for="address">Address</label>
                                 <input class="w-full rounded-lg border-gray-200 p-3 text-sm"
-                                    placeholder="address address" type="text" id="Institution Address" />
+                                    placeholder="address" type="text" name="address" id="Institution Address" />
                             </div>
 
                             <div>
                                 <label class="sr-only" for="phone">Phone</label>
                                 <input class="w-full rounded-lg border-gray-200 p-3 text-sm" placeholder="Institution Phone Number"
-                                    type="tel" id="phone" />
+                                    type="tel" name="phone" id="phone" />
                             </div>
                         </div>
                         <div>

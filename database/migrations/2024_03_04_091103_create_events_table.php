@@ -21,6 +21,10 @@ return new class extends Migration
             $table->decimal('price');
             $table->boolean('automatic_acceptence')->default(false);
             $table->boolean('publish_event')->default(false);
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });

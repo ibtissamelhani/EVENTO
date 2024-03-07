@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Organizer\EventController as OrganizerEventController;
 use App\Http\Controllers\Organizer\InstitutionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+;
 
 
 /////////////////////////////////////// admin routes /////////////////////////////////////////
@@ -52,6 +55,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
 
 Route::prefix('organizer')->name('organizer.')->group(function(){
     Route::resource('/institution', InstitutionController::class);
+    Route::get('/dashboard', function () {
+        return view('organizer.dashboard'); })->name('dashboard');
+    Route::resource('/MyEvents', OrganizerEventController::class);
 });
 
 // //////////////////////////////////////////////////////////////////////////////////////////

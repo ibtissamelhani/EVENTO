@@ -15,6 +15,7 @@
                         discovering, reserving, and experiencing a diverse range of unforgettable events.ensuring
                         every moment becomes a cherished
                         memory.</p>
+                    @guest
                     <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
                         <a href="#"
                             class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-indigo-700 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
@@ -26,6 +27,7 @@
                                 more</span>
                         </a>
                     </div>
+                    @endguest
                     <div
                         class="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
                         <div class="text-left">
