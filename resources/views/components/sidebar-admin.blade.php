@@ -16,16 +16,7 @@
                     <span class="ms-3">Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('admin.event.index') }}"
-                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                    <span
-                        class="material-symbols-outlined  flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                        today
-                    </span>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Events</span>
-                </a>
-            </li>
+
             <li>
                 <a href="{{ route('admin.user.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -37,13 +28,13 @@
                 </a>
             </li>
             <li>
-                <a href="#"
+                <a href="{{ route('admin.event.index') }}"
                     class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span
-                        class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
-                        add_business
+                        class="material-symbols-outlined  flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                        today
                     </span>
-                    <span class="flex-1 ms-3 whitespace-nowrap">Institutions</span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Events</span>
                 </a>
             </li>
             <li>
@@ -54,6 +45,16 @@
                         category
                     </span>
                     <span class="flex-1 ms-3 whitespace-nowrap">Event Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.institution.index') }}"
+                    class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <span
+                        class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
+                        add_business
+                    </span>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Institutions</span>
                 </a>
             </li>
             <li>

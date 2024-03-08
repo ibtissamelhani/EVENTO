@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Institution;
 use Illuminate\Http\Request;
 
 class InstitutionController extends Controller
@@ -12,7 +13,9 @@ class InstitutionController extends Controller
      */
     public function index()
     {
-        //
+        $institutions = Institution::paginate(8);
+        $countInst = Institution::count();
+        return view('admin.institutions.index', compact('institutions','countInst'));
     }
 
     /**
@@ -58,8 +61,9 @@ class InstitutionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Institution $institution)
     {
-        //
+        $institution->delete();
+        return redirect()->route('admin.institution.index');
     }
 }

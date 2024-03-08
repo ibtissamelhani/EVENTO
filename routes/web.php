@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\InstitutionController as AdminInstitutionController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Organizer\EventController as OrganizerEventController;
@@ -49,6 +50,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::post('/user/banne/{user}', [UserController::class, 'blockUser'])->name('user.banne');
     Route::post('/user/unbanne/{user}', [UserController::class, 'unblock'])->name('user.unbanne');
     Route::get('/search', [UserController::class, 'search'])->name('user.search');
+
+
+    Route::resource('/institution', AdminInstitutionController::class);
 
 });
 
