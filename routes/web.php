@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Organizer\EventController as OrganizerEventController;
 use App\Http\Controllers\Organizer\InstitutionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\User\EventController as UserEventController;
+use App\Http\Controllers\User\homeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
+Route::get('/', [homeController::class, 'index'])->name('/');
 
 Route::get('/dashboard', function () {
     return view('admin.dashboard');
@@ -72,8 +72,15 @@ Route::prefix('organizer')->name('organizer.')->group(function(){
 
 });
 
-// //////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////
 
+
+//////////////////////////////////////////////// user routes //////////////////////////////
+Route::prefix('user')->name('user.')->group(function() {
+
+    Route::resource('/event', UserEventController::class);
+
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
