@@ -38,6 +38,9 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
 
     Route::resource('/event', EventController::class);
+    Route::post('/event/publish/{event}', [EventController::class, 'publishEvent'])->name('event.publish');
+    Route::post('/event/unpublish/{event}', [EventController::class, 'unpublishEvent'])->name('event.unpublish');
+
 
     Route::resource('/type', TypeController::class);
     Route::get('/types/search', [TypeController::class, 'search'])->name('types.search');
@@ -61,6 +64,8 @@ Route::prefix('organizer')->name('organizer.')->group(function(){
         return view('organizer.dashboard'); })->name('dashboard');
         
     Route::resource('/event', OrganizerEventController::class);
+
+
 });
 
 // //////////////////////////////////////////////////////////////////////////////////////////

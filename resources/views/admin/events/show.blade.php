@@ -25,12 +25,12 @@
                     <dt class="font-medium text-gray-900">institution</dt>
                     <dd class="text-red-700 sm:col-span-2">{{ $event->user->institution->name }}</dd>
                 </div>
-    
+
                 <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt class="font-medium text-gray-900">Location</dt>
                     <dd class="text-gray-700 sm:col-span-2">{{ $event->location }}</dd>
                 </div>
-    
+
                 <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt class="font-medium text-gray-900">Date</dt>
                     <dd class="text-gray-700 sm:col-span-2">{{ $event->date }}</dd>
@@ -45,7 +45,8 @@
                 </div>
                 <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt class="font-medium text-gray-900">Price of one ticket</dt>
-                    <dd class="text-gray-700 sm:col-span-2">{{ $event->price }} <span class="text-black ml-2"> MAD</span>
+                    <dd class="text-gray-700 sm:col-span-2">{{ $event->price }} <span class="text-black ml-2">
+                            MAD</span>
                     </dd>
                 </div>
                 <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
@@ -67,7 +68,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                 </svg>
-    
+
                                 <p class="whitespace-nowrap text-sm">published</p>
                             </span>
                         @else
@@ -78,17 +79,38 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M8.25 9.75h4.875a2.625 2.625 0 010 5.25H12M8.25 9.75L10.5 7.5M8.25 9.75L10.5 12m9-7.243V21.75l-3.75-1.5-3.75 1.5-3.75-1.5-3.75 1.5V4.757c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0c1.1.128 1.907 1.077 1.907 2.185z" />
                                 </svg>
-    
+
                                 <p class="whitespace-nowrap text-sm">Pending</p>
                             </span>
                         @endif
                     </dd>
                 </div>
-    
+
                 <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
                     <dt class="font-medium text-gray-900">Description</dt>
                     <dd class="text-gray-700 sm:col-span-2">
                         {{ $event->description }}
+                    </dd>
+                </div>
+                <div class="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+                    <dd class="text-gray-700 sm:col-span-2">
+                        @if ($event->publish_event == 0)
+                            <form action="{{ route('admin.event.publish', $event) }}" method="POST">
+                                @csrf
+                                <button
+                                    class="text-white bg-purple-700 hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900">
+                                    Publish event
+                                </button>
+                            </form>
+                        @else
+                            <form action="{{ route('admin.event.unpublish', $event) }}" method="POST">
+                                @csrf
+                                <button
+                                    class="text-white bg-red-700 hover:bg-red-800 focus:outline-none focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                    Unpublish event
+                                </button>
+                            </form>
+                        @endif
                     </dd>
                 </div>
             </dl>

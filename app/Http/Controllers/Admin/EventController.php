@@ -18,6 +18,19 @@ class EventController extends Controller
         return view('admin.events.index', compact('pendingEvents','events'));
     }
 
+
+
+    public function publishEvent(Event $event)
+    {
+        $event->update(['publish_event'=> 1]);
+        return redirect()->route('admin.event.index');
+    }
+    public function unpublishEvent(Event $event)
+    {
+        $event->update(['publish_event'=> 0]);
+        return redirect()->route('admin.event.index');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
