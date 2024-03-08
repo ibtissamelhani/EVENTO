@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -12,7 +13,9 @@ class EventController extends Controller
      */
     public function index()
     {
-        return view('admin.events.index');
+        $pendingEvents = Event::where('publish_event','=', '0')->latest()->paginate(6);
+        $events = Event::paginate(8);
+        return view('admin.events.index', compact('pendingEvents','events'));
     }
 
     /**
@@ -34,9 +37,9 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Event $event)
     {
-        //
+        return view('admin.events.show', compact('event'));
     }
 
     /**
@@ -58,8 +61,10 @@ class EventController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Event $event)
     {
-        //
+        $event->delete();
+        return redirect()->route('admin.event.index')
+            ->with('success', 'Event deleted successfully.');
     }
 }
