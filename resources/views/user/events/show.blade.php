@@ -78,25 +78,27 @@
                                             </button>
                                         </div>
                                         <!-- Modal body -->
-                                        <form class="p-4 md:p-5">
-                                            <div class="grid gap-4 mb-4 grid-cols-2">
+                                        <form class="p-4 md:p-5" method="post" action="{{route('user.eventUser.store')}}">
+                                          @csrf
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                            <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                            <div class="col-span-2 sm:col-span-1">
+                                                <label for="Number_of_Places"
+                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number_of_Places</label>
+                                                <div class="flex  py-4">
+                                                    <button type="button" id="decrement-btn"
+                                                        class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-bold rounded-full text-xl px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">-</button>
 
-                                                <div class="col-span-2 sm:col-span-1">
-                                                    <label for="Number_of_Places"
-                                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Number_of_Places</label>
-                                                    <div class="flex  py-4">
-                                                        <button type="button" id="decrement-btn"
-                                                            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-bold rounded-full text-xl px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">-</button>
+                                                    <input type="number" value="0" id="Number_of_Places"
+                                                        name="number_place"
+                                                        class="bg-gray-50 border mx-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                                        required="">
 
-                                                        <input type="number" value="0" id="Number_of_Places"
-                                                            class="bg-gray-50 border mx-2 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                            required="" disabled>
-
-                                                        <button type="button" id="increment-btn"
-                                                            class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-bold rounded-full text-xl px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">+</button>
-                                                    </div>
+                                                    <button type="button" id="increment-btn"
+                                                        class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-bold rounded-full text-xl px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">+</button>
                                                 </div>
                                             </div>
+
                                             <button type="submit"
                                                 class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                 <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -127,19 +129,19 @@
         let counter = 0;
 
         incrementBtn.addEventListener('click', () => {
-          counter++;
-          counterDisplay.value = counter;
-          if(counter >= 10){
-            incrementBtn.disabled = true;
-          }
+            counter++;
+            counterDisplay.value = counter;
+            if (counter >= 5) {
+                incrementBtn.disabled = true;
+            }
         });
 
         decrementBtn.addEventListener('click', () => {
-          counter--;
-          counterDisplay.value = counter;
-          if(counter < 1){
-            decrementBtn.disabled = true;
-          }
+            counter--;
+            counterDisplay.value = counter;
+            if (counter < 1) {
+                decrementBtn.disabled = true;
+            }
         });
     </script>
 

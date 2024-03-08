@@ -9,6 +9,7 @@ use App\Http\Controllers\Organizer\EventController as OrganizerEventController;
 use App\Http\Controllers\Organizer\InstitutionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\EventController as UserEventController;
+use App\Http\Controllers\User\EventUserController;
 use App\Http\Controllers\User\homeController;
 use Illuminate\Support\Facades\Route;
 
@@ -79,6 +80,7 @@ Route::prefix('organizer')->name('organizer.')->group(function(){
 Route::prefix('user')->name('user.')->group(function() {
 
     Route::resource('/event', UserEventController::class);
+    Route::resource('/eventUser', EventUserController::class);
 
 });
 

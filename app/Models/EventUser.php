@@ -11,6 +11,7 @@ class EventUser extends Model
 
     protected $fillable=[
         'number_place',
+        'status',
         'user_id',
         'event_id'
     ];

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('event_users', function (Blueprint $table) {
             $table->id();
             $table->integer('number_place');
+            $table->integer('status')->default(1);
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
