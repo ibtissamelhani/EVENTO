@@ -224,7 +224,10 @@
                     <p>no events </p>
                     @endforelse
             </div>
-       
+            <div class="m-8">
+                {{$events->links()}}
+            </div>
+            
         </div>
     </div>
     </div>

@@ -39,8 +39,8 @@ class EventUserController extends Controller
             $eventUser = EventUser::create($request->all());
             return redirect()->route('user.reservation', $eventUser);
         }else{
-             EventUser::create(array_merge($request->all(), ['status' => 0]));
-             return redirect()->route('user.event.show',$event);
+            EventUser::create(array_merge($request->all(), ['status' => 0]));
+            return redirect()->route('user.event.show',$event);
         }
         
     }

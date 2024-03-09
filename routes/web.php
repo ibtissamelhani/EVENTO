@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\InstitutionController as AdminInstitutionControll
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Organizer\EventController as OrganizerEventController;
+use App\Http\Controllers\Organizer\EventUserController as OrganizerEventUserController;
 use App\Http\Controllers\Organizer\InstitutionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\EventController as UserEventController;
@@ -65,6 +66,8 @@ Route::prefix('admin')->name('admin.')->group(function() {
 Route::prefix('organizer')->name('organizer.')->group(function(){
 
     Route::resource('/institution', InstitutionController::class);
+
+    Route::resource('/request', OrganizerEventUserController::class);
 
     Route::get('/dashboard', function () {
         return view('organizer.dashboard'); })->name('dashboard');

@@ -1,22 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Organizer;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use App\Models\Event;
+use App\Models\EventUser;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class homeController extends Controller
+class EventUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::orderBy('name')->get();
-        $events = Event::where('publish_event',1)->paginate(6);
-        return view('user.welcome',compact('events','categories'));
+        $userId = Auth::user()->id;
+        $eventUsers = EventUser::with('user')->where('status', 0)->whereHas('event', function($query) use($userId){
+            $query->where('user_id',$userId);
+        })->get();
+        return view('organizer.reservations.index',compact('eventUsers'));
     }
 
     /**
@@ -54,16 +56,18 @@ class homeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EventUser $request)
     {
-        //
+        $request->update(['status'=> 1]);
+        return redirect()->route('organizer.request.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(EventUser $request)
     {
-        //
+        $request->delete();
+        return redirect()->route('organizer.request.index');
     }
 }
