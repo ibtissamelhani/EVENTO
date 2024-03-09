@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\EventUser;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EventUserController extends Controller
 {
@@ -30,12 +32,13 @@ class EventUserController extends Controller
      */
     public function store(Request $request)
     {
+        $user = User::find($request->user_id);
         $event = Event::find($request->event_id);
+        
         if($event->automatic_acceptence == 1){
-            EventUser::create($request->all());
-            return redirect()->route('user.event.show', $event);
+            $eventUser = EventUser::create($request->all());
+            return redirect()->route('user.reservation', $eventUser);
         }else{
-
              EventUser::create(array_merge($request->all(), ['status' => 0]));
              return redirect()->route('user.event.show',$event);
         }

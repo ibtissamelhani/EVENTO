@@ -11,6 +11,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\User\EventController as UserEventController;
 use App\Http\Controllers\User\EventUserController;
 use App\Http\Controllers\User\homeController;
+use App\Http\Controllers\User\PdfController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +82,7 @@ Route::prefix('user')->name('user.')->group(function() {
 
     Route::resource('/event', UserEventController::class);
     Route::resource('/eventUser', EventUserController::class);
+    Route::get('/generate-pdf/{eventUser}', [PdfController::class, 'generatePdf'])->name('reservation');
 
 });
 

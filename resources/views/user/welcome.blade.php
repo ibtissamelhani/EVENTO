@@ -218,11 +218,13 @@
                                     </span> : {{ $event->capacity }}
                                 </p>
                             </div>
+                        </a>
                     </div>
-
+                    @empty
+                    <p>no events </p>
+                    @endforelse
             </div>
-        @empty
-            @endforelse
+       
         </div>
     </div>
     </div>

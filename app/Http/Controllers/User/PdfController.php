@@ -3,23 +3,31 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use App\Models\Event;
+use App\Models\EventUser;
+use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
-class homeController extends Controller
+class PdfController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::orderBy('name');
-        $events = Event::where('publish_event',1)->paginate(6);
-        // $events = Event::all();
-        // dd($events);
-        return view('user.welcome',compact('events','categories'));
+        //
     }
+    public function generatePdf(EventUser $eventUser){
+        // $pdf = PDF::loadView('ticket', ['event' => $event, 'user' => $user]);
+        // $pdf->download('ticket.pdf');
+
+        
+    $pdf = PDF::loadView('ticket', ['eventUser' => $eventUser]);
+    return $pdf->download();
+    }
+
 
     /**
      * Show the form for creating a new resource.
