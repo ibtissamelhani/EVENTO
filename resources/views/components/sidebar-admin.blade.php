@@ -68,13 +68,14 @@
                 </a>
             </li>
             <li>
-                <form id="logoutForm" method="POST" action="{{ route('logout') }}"
-                    class="flex items-center "class="flex items-center p-2 px-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <form method="POST" action="{{ route('logout') }}"
+                    class="flex items-center p-2 px-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    @csrf
                     <span
                         class="material-symbols-outlined flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white">
                         logout
                     </span>
-                    <button type="submit" class="flex-1 whitespace-nowrap">
+                    <button type="submit" class="flex-1  ms-3 whitespace-nowrap">
                         Sign Out
                     </button>
                 </form>
@@ -88,3 +89,5 @@
         {{ $slot }}
     </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+

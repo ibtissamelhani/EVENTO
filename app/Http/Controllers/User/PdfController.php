@@ -9,71 +9,33 @@ use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Mail;
 
 class PdfController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * generate ticket
      */
-    public function index()
-    {
-        //
-    }
+    
     public function generatePdf(EventUser $eventUser){
-        // $pdf = PDF::loadView('ticket', ['event' => $event, 'user' => $user]);
-        // $pdf->download('ticket.pdf');
-
-        
     $pdf = PDF::loadView('ticket', ['eventUser' => $eventUser]);
     return $pdf->download();
     }
 
-
     /**
-     * Show the form for creating a new resource.
+     * sending ticket in email
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+     public function sendTicket(EventUser $eventUser){
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $pdf = PDF::loadView('ticket', ['eventUser' => $eventUser]);
+        Mail::send('ticket',['eventUser' => $eventUser], function($message) use($pdf){
+            $message->to("sibti587@gmail.com")
+            ->subject("event ticket")
+            ->attachData($pdf->output(), "ticket.pdf");
+        });
+        dd("sended");
+     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

@@ -86,6 +86,7 @@ Route::prefix('user')->name('user.')->group(function() {
     Route::resource('/event', UserEventController::class);
     Route::resource('/eventUser', EventUserController::class);
     Route::get('/generate-pdf/{eventUser}', [PdfController::class, 'generatePdf'])->name('reservation');
+    Route::get('/sendTicket/{eventUser}', [PdfController::class, 'sendTicket'])->name('email');
 
 });
 

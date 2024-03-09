@@ -25,7 +25,7 @@
                     <input aria-hidden="true" type="checkbox" name="toggle_nav" id="toggle_nav"
                         class="hidden peer astro-UY3JLCBK">
                     <div class="relative z-20 w-full flex justify-between lg:w-max md:px-0 astro-UY3JLCBK">
-                        <a href="#" aria-label="logo" class="flex space-x-2 items-center astro-UY3JLCBK">
+                        <a href="/" aria-label="logo" class="flex space-x-2 items-center astro-UY3JLCBK">
                             <x-application-logo
                                 class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                         </a>

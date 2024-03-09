@@ -24,7 +24,6 @@ class User extends Authenticatable
     public const STATUS_RADIO = [
         '1'=> 'Allowed',
         '2'=> 'Banned',
-        '3'=> 'Pending',
     ];
 
     // get the user status 

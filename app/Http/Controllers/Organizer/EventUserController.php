@@ -59,7 +59,7 @@ class EventUserController extends Controller
     public function update(EventUser $request)
     {
         $request->update(['status'=> 1]);
-        return redirect()->route('organizer.request.index');
+        return redirect()->route('user.email',$request);
     }
 
     /**
