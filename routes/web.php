@@ -88,6 +88,8 @@ Route::prefix('user')->name('user.')->group(function() {
     Route::get('/generate-pdf/{eventUser}', [PdfController::class, 'generatePdf'])->name('reservation');
     Route::get('/sendTicket/{eventUser}', [PdfController::class, 'sendTicket'])->name('email');
 
+    Route::post('/search', [homeController::class, 'search'])->name('search');
+
 });
 
 Route::middleware('auth')->group(function () {

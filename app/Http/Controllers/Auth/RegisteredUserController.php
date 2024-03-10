@@ -44,8 +44,8 @@ class RegisteredUserController extends Controller
 
         if ($request->role == 3)
         {
-            $user->roles()->attach(2);
-            $user->update(['status'=> 3]);
+            $user->roles()->attach(3);
+            $user->update(['status'=> 1]);
             event(new Registered($user));
             Auth::login($user);
             return redirect()->route('organizer.institution.create');

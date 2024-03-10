@@ -17,14 +17,15 @@
                         memory.</p>
                     @guest
                         <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
-                            <a href="#"
+                            <a href="{{ route('register') }}"
                                 class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-indigo-700 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
                                 <span class="relative text-base font-semibold text-white">Get started</span>
                             </a>
-                            <a href="#"
+                            <a href="{{ route('login') }}"
                                 class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-indigo-300 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800 sm:w-max">
-                                <span class="relative text-base font-semibold text-primary dark:text-white">Learn
-                                    more</span>
+                                <span class="relative text-base font-semibold text-primary dark:text-white">
+                                    Login
+                                    </span>
                             </a>
                         </div>
                     @endguest
@@ -154,21 +155,25 @@
                 <h2 class="text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">Events & Happenings</h2>
             </div>
             <div class="mb-12 space-y-2 text-center">
-                <form class="max-w-lg mx-auto">
+                <form  class="max-w-lg mx-auto" method="POST" action="{{route('user.search')}}">
+                    @csrf
                     <div class="flex">
                         <div class="relative w-full">
-                            <select id="countries"
+                            <select id="countries" name="category_id"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option disabled selected>Pick your favorite language</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                            <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
                         </div>
+                        <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
+
                         <div class="relative w-full">
-                            <input type="search" id="search-dropdown"
+                            <input type="search" id="search-dropdown" name="name"
                                 class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                                placeholder="Search event title..." required />
+                                placeholder="Search event title..." />
                             <button type="submit"
                                 class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                 <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -178,6 +183,7 @@
                                 </svg>
                                 <span class="sr-only">Search</span>
                             </button>
+                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
                     </div>
                 </form>

@@ -60,19 +60,13 @@
                                             <span class="">Dashboard</span>
                                         </a>
                                     </li>
-                                    <li class="">
+                                    <li class="{{ route('profile.edit') }}">
                                         <a href="#"
                                             class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
                                             <span class="">Profile</span>
                                         </a>
                                     </li>
                                 @else
-                                <li class="">
-                                    <a href="#"
-                                        class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
-                                        <span class="">Create Events</span>
-                                    </a>
-                                </li>
                                     <li class="">
                                         <a href="{{ route('login') }}"
                                             class="block md:px-4 transition underline hover:text-indigo-500 hover:text-base ">
