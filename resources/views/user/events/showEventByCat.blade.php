@@ -1,53 +1,8 @@
 <x-navbar>
 </x-navbar>
 <main class="space-y-40 mb-10">
-    <div class="relative">
-        <div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
-            <div class="blur-[106px] h-64 bg-gradient-to-br from-indigo-600 to-purple-400 dark:from-blue-700"></div>
-            <div class="blur-[106px] h-64 bg-gradient-to-br from-indigo-600 to-purple-400 dark:to-indigo-600"></div>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 md:px-12 xl:px-6">
-            <div class="relative pt-36 ml-auto">
-                <div class="lg:w-2/3 text-center mx-auto">
-                    <h1 class="text-gray-900 dark:text-white  font-bold font-sans text-5xl md:text-6xl ">Experience
-                        Unforgettable Events with <span class="text-blue-900  dark:text-white">Evento.</span></h1>
-                    <p class="mt-8 text-gray-700 dark:text-gray-300">Evento is your premier destination for
-                        discovering, reserving, and experiencing a diverse range of unforgettable events.ensuring
-                        every moment becomes a cherished
-                        memory.</p>
-                    @guest
-                        <div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
-                            <a href="{{ route('register') }}"
-                                class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-indigo-700 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 sm:w-max">
-                                <span class="relative text-base font-semibold text-white">Get started</span>
-                            </a>
-                            <a href="{{ route('login') }}"
-                                class="relative flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:border before:border-transparent before:bg-indigo-300 before:bg-gradient-to-b before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95 dark:before:border-gray-700 dark:before:bg-gray-800 sm:w-max">
-                                <span class="relative text-base font-semibold text-primary dark:text-white">
-                                    Login
-                                    </span>
-                            </a>
-                        </div>
-                    @endguest
-                    <div
-                        class="hidden py-8 mt-16 border-y border-gray-100 dark:border-gray-800 sm:flex justify-between">
-                        <div class="text-left">
-                            <h6 class="text-lg font-semibold text-gray-700 dark:text-white">Diverse Selection</h6>
-                        </div>
-                        <div class="text-left">
-                            <h6 class="text-lg font-semibold text-gray-700 dark:text-white">Trustworthy Platform
-                            </h6>
-                        </div>
-                        <div class="text-left">
-                            <h6 class="text-lg font-semibold text-gray-700 dark:text-white">Easy Reservation Process
-                            </h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="flex items-center justify-between flex-wrap px-20">
+    
+    <div class="flex items-center justify-between flex-wrap px-20 pt-36">
 
         <a href="{{route('user.events.category', ['id' => 11])}}">
             <div class="flex flex-col items-center gap-2 ">
@@ -152,41 +107,7 @@
                 <div class="blur-[106px] h-64 bg-gradient-to-r from-sky-100 to-purple-300 dark:to-indigo-600"></div>
             </div>
             <div class="mb-12 space-y-2 text-center">
-                <h2 class="text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">Events & Happenings</h2>
-            </div>
-            <div class="mb-12 space-y-2 text-center">
-                <form  class="max-w-lg mx-auto" method="POST" action="{{route('user.search')}}">
-                    @csrf
-                    <div class="flex">
-                        <div class="relative w-full">
-                            <select id="countries" name="category_id"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                <option disabled selected>Pick your favorite language</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                @endforeach
-                            </select>
-                            <x-input-error :messages="$errors->get('category_id')" class="mt-2" />
-                        </div>
-
-                        <div class="relative w-full">
-                            <input type="search" id="search-dropdown" name="name"
-                                class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                                placeholder="Search event title..." />
-                            <button type="submit"
-                                class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
-                                <span class="sr-only">Search</span>
-                            </button>
-                            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                        </div>
-                    </div>
-                </form>
-
+                <h2 class="text-3xl font-bold text-gray-800 md:text-4xl dark:text-white">{{$category->name}} Events</h2>
             </div>
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 @forelse ($events as $event)
@@ -226,7 +147,7 @@
                         </a>
                     </div>
                     @empty
-                    <p>no events </p>
+                    <p>no events in this category </p>
                     @endforelse
             </div>
             <div class="m-8">

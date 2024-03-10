@@ -31,8 +31,9 @@ class homeController extends Controller
         if ($request->has('name')) {
             $query->where('name', 'like', '%' . $request->input('name') . '%');
         }
-        $events = $query->where('date', '>', now())->paginate(6);
 
+        $events = $query->where('date', '>', now())->paginate(6);
+        
         $categories = Category::orderBy('name')->get();
         return view('user.welcome',compact('events','categories'));
     }

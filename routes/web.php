@@ -90,6 +90,8 @@ Route::prefix('user')->name('user.')->group(function() {
 
     Route::post('/search', [homeController::class, 'search'])->name('search');
 
+    Route::get('/events/category/{id}', [UserEventController::class, 'getEventByCategory'])->name('events.category');
+
 });
 
 Route::middleware('auth')->group(function () {
