@@ -16,7 +16,7 @@ class homeController extends Controller
     public function index()
     {
         $categories = Category::orderBy('name')->get();
-        $events = Event::where('publish_event',1)->where('date', '>', now())->paginate(6);
+        $events = Event::where('publish_event',1)->where('date', '>', now())->orderBy('created_at', 'desc')->paginate(6);
         return view('user.welcome',compact('events','categories'));
     }
 

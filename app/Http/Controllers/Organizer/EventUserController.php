@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\EventUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EventUserController extends Controller
 {
@@ -15,10 +16,10 @@ class EventUserController extends Controller
     public function index()
     {
         $userId = Auth::user()->id;
-        $eventUsers = EventUser::with('user')->where('status', 0)->whereHas('event', function($query) use($userId){
-            $query->where('user_id',$userId);
+        $eventUsers = EventUser::with('user')->where('status', 0)->whereHas('event', function ($query) use ($userId) {
+            $query->where('user_id', $userId);
         })->get();
-        return view('organizer.reservations.index',compact('eventUsers'));
+        return view('organizer.reservations.index', compact('eventUsers'));
     }
 
     /**
@@ -58,8 +59,23 @@ class EventUserController extends Controller
      */
     public function update(EventUser $request)
     {
-        $request->update(['status'=> 1]);
-        return redirect()->route('user.email',$request);
+        DB::beginTransaction();
+        try {
+
+            $request->update(['status' => 1]);
+
+            $nbr_place = $request->number_place;
+
+            $event = $request->event;
+
+            $oldCapacity = $event->capacity;
+            $event->update(['capacity' => $oldCapacity -  $nbr_place]);
+            DB::commit();
+            return redirect()->route('user.email', $request)->with('success', 'request accepted');
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('error', 'An error occurred. Please try again later.');
+        }
     }
 
     /**
@@ -68,6 +84,6 @@ class EventUserController extends Controller
     public function destroy(EventUser $request)
     {
         $request->delete();
-        return redirect()->route('organizer.request.index');
+        return redirect()->route('organizer.request.index')->with('success', 'request deleted');
     }
 }

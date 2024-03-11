@@ -27,14 +27,13 @@ class PdfController extends Controller
      */
 
      public function sendTicket(EventUser $eventUser){
-
         $pdf = PDF::loadView('ticket', ['eventUser' => $eventUser]);
         Mail::send('ticket',['eventUser' => $eventUser], function($message) use($pdf){
             $message->to("sibti587@gmail.com")
             ->subject("event ticket")
             ->attachData($pdf->output(), "ticket.pdf");
         });
-        dd("sended");
+        return back()->with('error', 'done');
      }
 
 
