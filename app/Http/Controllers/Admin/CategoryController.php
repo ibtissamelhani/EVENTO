@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::paginate(5);
+        $categories = Category::paginate(10);
         $countCat = Category::count();
         return view ('admin.categories.index', compact('categories','countCat'));
     }
@@ -65,7 +65,7 @@ class CategoryController extends Controller
             'name' => ['required', 'string', 'max:255', Rule::unique('categories')],
         ]);
         $category->update($validatedData);
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with('success','Category updated successfully.');
     }
 
     /**
@@ -74,13 +74,13 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('admin.category.index');
+        return redirect()->route('admin.category.index')->with('success','Category deleted successfully.');
     }
 
     public function search(Request $request){
         $countCat = Category::count();
         $keyword = $request->keyword;
-        $categories = Category::where('name', 'like', '%' . $keyword . '%')->paginate(5);
+        $categories = Category::where('name', 'like', '%' . $keyword . '%')->paginate(10);
         return view ('admin.categories.index', compact('categories','countCat'));
     }
 }

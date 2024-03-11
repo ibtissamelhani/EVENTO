@@ -55,6 +55,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::get('/search', [UserController::class, 'search'])->name('user.search');
 
 
+
     Route::resource('/institution', AdminInstitutionController::class);
 
 });
