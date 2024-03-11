@@ -54,12 +54,15 @@
                         <div class="text-gray-600 dark:text-gray-300 lg:pr-4 lg:w-auto w-full lg:pt-0 ">
                             <ul class="tracking-wide font-medium lg:text-sm flex-col flex lg:flex-row gap-6 lg:gap-0 ">
                                 @auth
+                                @if (Auth::user()->roles->contains('id',3))    
+                                
                                     <li class="">
                                         <a href="{{route('organizer.dashboard')}}"
                                             class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">
                                             <span class="">Dashboard</span>
                                         </a>
                                     </li>
+                                    @endif
                                     <li class="{{ route('profile.edit') }}">
                                         <a href="#"
                                             class="block md:px-4 transition hover:text-indigo-500 hover:text-base ">

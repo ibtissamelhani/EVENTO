@@ -31,13 +31,13 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', [homeController::class, 'index'])->name('/');
 
-Route::get('/dashboard', [AdminDashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [AdminDashboardController::class, 'index'])->middleware(['auth', 'verified','admin'])->name('dashboard');
 
 
 
 /////////////////////////////////////// admin routes /////////////////////////////////////////
 
-Route::prefix('admin')->name('admin.')->group(function() {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function() {
     Route::resource('/category', CategoryController::class);
     Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
 
