@@ -102,6 +102,11 @@
                                         @endswitch
                                     </td>
                                     <td class="flex gap-4  px-6 py-4">
+                                        <a href="{{ route('admin.user.edit', $user->id)}}" class="hover:text-yellow-500" title="Edit">
+                                            <span class="material-symbols-outlined hover:text-yellow-500 text-2xl">
+                                                edit
+                                            </span>
+                                        </a>
                                         @if ($user->status == 1)
                                             <form action="{{ route('admin.user.banne', $user) }}" method="POST">
                                                 @csrf
