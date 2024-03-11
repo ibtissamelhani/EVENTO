@@ -37,6 +37,4 @@ class homeController extends Controller
         $categories = Category::orderBy('name')->get();
         return view('user.welcome',compact('events','categories'));
     }
-
-
 }

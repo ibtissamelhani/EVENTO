@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\InstitutionController as AdminInstitutionController;
 use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Organizer\DashboardController;
 use App\Http\Controllers\Organizer\EventController as OrganizerEventController;
 use App\Http\Controllers\Organizer\EventUserController as OrganizerEventUserController;
 use App\Http\Controllers\Organizer\InstitutionController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\User\EventUserController;
 use App\Http\Controllers\User\homeController;
 use App\Http\Controllers\User\PdfController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,8 +71,7 @@ Route::prefix('organizer')->name('organizer.')->group(function(){
 
     Route::resource('/request', OrganizerEventUserController::class);
 
-    Route::get('/dashboard', function () {
-        return view('organizer.dashboard'); })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
         
     Route::resource('/event', OrganizerEventController::class);
 
